@@ -1,31 +1,52 @@
 <template>
   <div id="app">
-    <!--    <img alt="Vue logo" src="./assets/logo.png">-->
-    <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <Main/>
+    <AppLoader v-if="isInit"/>
+    <component :is="layout" v-else>
+      <router-view />
+    </component>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import Main from "@/components/Main";
+import ErrorLayout from "@/layouts/ErrorLayout";
+import EmptyLayout from "@/layouts/EmptyLayoutt"
+import MainLayout from "@/layouts/MainLayout"
+import AppLoader from "@/layouts/AppLoader"
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
-    Main
+    AppLoader, MainLayout, ErrorLayout, EmptyLayout
+  },
+  data(){
+    return {
+      isInit: true,
+    }
+  },
+
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || "empty") + "-layout"
+    },
+  },
+
+  watch:{
+    layout () {
+      this.init();
+    }
+  },
+
+  methods:{
+    init() {
+      // if(!this.$store.getters.isInited) {
+      //   this.isInit = this.$route.meta.layout !== 'error';
+      // }
+      this.isInit = false;
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import "assets";
 </style>

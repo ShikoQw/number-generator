@@ -1,0 +1,235 @@
+html {
+    overflow: hidden !important;
+    font-size: 14px;
+    & .view-wrapper .view .v-toolbar.h-auto, & .view-wrapper .view .h-auto .v-toolbar__content{
+        height: auto !important;
+    }
+}
+
+#app {
+    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FBFBFB;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+@media (max-width: 960px) {
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    background-color: #AAA;
+}
+
+.v-main {
+    background-image: url(https://wallpaperaccess.com/full/1748598.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+
+    .v-main__wrap {
+        display: flex;
+        justify-content: center;
+        height: calc(100vh - 64px);
+    }
+}
+
+@media (min-width: 960px) {
+    .v-main {
+        .v-main__wrap {
+            display: flex;
+            justify-content: center;
+            height: calc(100vh - 64px);
+        }
+    }
+}
+
+.the-nav {
+    padding-left: 4px;
+    display: none;
+}
+
+.the-brand {
+    width: 100%;
+    display: flex;
+    padding: 0 !important;
+    margin-right: -16px;
+    justify-content: center;
+}
+
+@media (min-width: 960px) {
+    .the-brand {
+        width: auto;
+    }
+    .the-nav {
+        display: inline;
+    }
+    .the-account {
+        display: block !important;
+    }
+    .v-main {
+        padding: 64px 0 0 !important;
+    }
+}
+
+@media (min-width: 1264px) {
+    .the-nav {
+        padding-left: 48px;
+    }
+}
+
+.view-wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
+    &.export > .view .v-input{
+        background-color: transparent;
+    }
+    .view {
+        height: 100%;
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: stretch;
+        align-items: stretch;
+        flex-direction: column;
+        .v-toolbar, .v-toolbar__content {
+            height: 56px !important;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            border: none !important;
+        }
+
+        .content, .expansion-panels-content {
+            flex-grow: 1;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .v-card {
+            box-shadow: none !important;
+            border-radius: 0;
+
+            .v-toolbar {
+                background-color: #F5F5F5;
+            }
+        }
+    }
+}
+
+
+.view.master {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+
+    .container {
+        background-color: #F5F5F7;
+        max-width: 100% !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 400;
+    }
+    & h3 {
+        font-weight: 500;
+        font-size: 1.125rem;
+    }
+    & h5 {
+        font-size: 0.875rem;
+    }
+
+    .toolbar {
+        display: flex;
+        align-items: center;
+    }
+
+    .v-data-table {
+        border-top: thin solid rgba(0, 0, 0, 0.12);
+    }
+
+    .v-input {
+        background-color: #FFF;
+        & input {
+            &:focus::placeholder {
+                color: #858C94;
+                opacity: 0.4;
+            }
+            &::placeholder {
+                transition: 0.3s;
+                color: transparent;
+            }
+        }
+    }
+    .toolbar {
+        justify-content: flex-end;
+    }
+    .toolbar, .v-toolbar__content {
+        & .v-text-field{
+            max-width: 180px;
+            transition: 0.3s;
+            &.v-input--is-focused{
+                max-width: 100% !important;
+            }
+            &:hover {
+                max-width: 190px;
+                & input::placeholder {
+                    color: #858C94;
+                }
+                & > .v-input__control > .v-input__slot >*:first-child {
+                    animation: search 0.5s linear 1;
+                }
+            }
+        }
+    }
+    @media (max-width: 960px) {
+        .toolbar, .v-toolbar__content {
+            & .v-text-field{
+                max-width: 100% !important;
+            }
+        }
+    }
+    .filter {
+        height: 40px;
+        width: 40px;
+        background-color: #723FA5;
+        margin-left: 1.25rem !important;
+        border-radius: 8px;
+    }
+    .toolbar, .v-toolbar__content {
+        & .v-text-field.v-input--is-focused.v-text-field--solo:not(.v-text-field--solo-flat) > .v-input__control > .v-input__slot {
+            &>*:first-child {
+                animation: search 0.5s linear 1;
+            }
+        }
+    }
+    .v-text-field.v-text-field--solo:not(.v-text-field--solo-flat) > .v-input__control > .v-input__slot {
+        box-shadow: none !important;
+    }
+}
