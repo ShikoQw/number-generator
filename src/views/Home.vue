@@ -24,7 +24,7 @@
               <v-col>
                 <v-text-field
                     v-model="digitsString"
-                    label="Слагаемые ч/запятую 1, 2, ..."
+                    label="Слагаемые ч/пробел 1 2 ..."
                     solo
                     @keyup.enter="addDigits"
                 ></v-text-field>
@@ -144,7 +144,7 @@ export default {
     addDigits(){
       if(!this.digitsString) return
       this.digits = []
-      this.digitsString = this.digitsString.replace(",00", "")
+      this.digitsString = this.digitsString.replaceAll(",00", "")
       this.digits = this.digitsString.split(/(\s+)/)
       this.digits = this.digits.filter((el) => !isNaN(el) && el !== '' && el !== ' ' && el !== '  ')
       this.digitsString = undefined
